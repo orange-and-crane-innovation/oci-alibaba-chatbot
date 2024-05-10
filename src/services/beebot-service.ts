@@ -15,8 +15,8 @@ export default class Client {
     // The project code leakage may result in the leakage of AccessKey, posing a threat to the security of all resources under the account. The following code examples are for reference only.
     // It is recommended to use the more secure STS credential. For more credentials, please refer to: https://www.alibabacloud.com/help/en/alibaba-cloud-sdk-262060/latest/credentials-settings-5.
     let config = new $OpenApi.Config({
-      accessKeyId: "LTAI5tNRYX8mq2S6s5Bgxvwo",
-      accessKeySecret: "s49qoxd7KBcj6pj6PiSEGNMUy5pU6O",
+      accessKeyId: process.env.ALIBABA_ACCESS_KEY_ID,
+      accessKeySecret: process.env.ALIBABA_ACCESS_KEY_SECRET,
       // Required, please ensure that the environment variables ALIBABA_CLOUD_ACCESS_KEY_ID is set.
       // accessKeyId: process.env['ALIBABA_CLOUD_ACCESS_KEY_ID'],
       // Required, please ensure that the environment variables ALIBABA_CLOUD_ACCESS_KEY_SECRET is set.
