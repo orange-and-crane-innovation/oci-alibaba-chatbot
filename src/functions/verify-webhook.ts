@@ -58,7 +58,10 @@ async function handleMessage(senderPsid, receivedMessage) {
     // Create the payload for a basic text message, which
     // will be added to the body of your request to the Send API
     if (receivedMessage.text === "hi") {
-      const chatBotInstanceId = 123;
+      const chatBotInstanceId = process.env.ALIBABA_ROBOT_ID;
+      console.log("chatBotInstanceId", chatBotInstanceId);
+      console.log("receivedMessage.text", receivedMessage.text);
+      console.log("process.env.ACCESS_TOKEN", process.env.ACCESS_TOKEN);
       const chat = await Client.main({
         chatBotInstanceId,
         utterance: receivedMessage.text,

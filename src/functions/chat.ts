@@ -11,7 +11,7 @@ const handler: Handler = async (event: HandlerEvent) => {
     chatBotInstanceId,
     utterance: reqBody.utterance,
   });
-  console.log("chat", chat);
+  console.log("chat", chat.body);
   // let client = Client.main([]);
   // let client = Client.createClient();
   // let welcome = Client.beginSession(client, "123");
@@ -21,7 +21,7 @@ const handler: Handler = async (event: HandlerEvent) => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify(chat),
+    body: JSON.stringify(chat.body),
   };
 };
 
