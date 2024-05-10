@@ -57,7 +57,15 @@ async function handleMessage(senderPsid, receivedMessage) {
   if (receivedMessage.text) {
     // Create the payload for a basic text message, which
     // will be added to the body of your request to the Send API
-    if (receivedMessage.text === "hi") {
+    if (receivedMessage.text === "hi!") {
+      response = {
+        text: `Helo! what is your name?`,
+      };
+    } else if (receivedMessage.text === "nick") {
+      response = {
+        text: `Hi ${receivedMessage.text}! how can I help you?`,
+      };
+    } else {
       const chatBotInstanceId = process.env.ALIBABA_ROBOT_ID;
       console.log("chatBotInstanceId", chatBotInstanceId);
       console.log("receivedMessage.text", receivedMessage.text);
@@ -70,19 +78,9 @@ async function handleMessage(senderPsid, receivedMessage) {
       console.log("data", chat.body.data);
       console.log("messages[0]", chat.body.data.messages[0]);
       response = {
-        text: chat.body.data.messages[0].text.content,
-      };
-    } else if (receivedMessage.text === "hi!") {
-      response = {
-        text: `Helo! what is your name?`,
-      };
-    } else if (receivedMessage.text === "nick") {
-      response = {
-        text: `Hi ${receivedMessage.text}! how can I help you?`,
-      };
-    } else {
-      response = {
-        text: `You sent the message: '${receivedMessage.text}'. Wait! we'll find you something.`,
+        text:
+          chat.body.data?.messages?.[0]?.knowledge?.summary ||
+          chat.body.data?.messages?.[0]?.text?.content,
       };
     }
   } else if (receivedMessage.attachments) {
@@ -122,7 +120,7 @@ async function handleMessage(senderPsid, receivedMessage) {
 }
 
 const _handler: Handler = async (event: Event) => {
-  console.log("req body", event.httpMethod);
+  console.log("req body", event.body);
   if (event.httpMethod === "POST") {
     const body = event?.body ? JSON.parse(event.body) : {};
     if (body.object === "page") {
