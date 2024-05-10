@@ -1,5 +1,3 @@
-// This file is auto-generated, don't edit it
-// 依赖的模块可通过下载工程中的模块依赖文件或右上角的获取 SDK 依赖信息查看
 import Chatbot20220408, * as $Chatbot20220408 from "@alicloud/chatbot20220408";
 import OpenApi, * as $OpenApi from "@alicloud/openapi-client";
 import Console from "@alicloud/tea-console";
