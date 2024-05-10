@@ -1,0 +1,36 @@
+// {
+//   "compilerOptions": {
+//     "strict": false,
+//     "module": "commonjs",
+//     "declaration": true,
+//     "esModuleInterop": true,
+//     "target": "es6",
+//     "moduleResolution": "node",
+//     "sourceMap": true,
+//     "lib": ["es2019"]
+//   }
+// }
+
+{
+  "compilerOptions": {
+    "lib": ["es2019", "es2020.promise", "es2020.bigint", "es2020.string", "DOM"],
+    "module": "commonjs",
+    "target": "es2019",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "strict": false,
+    "declaration": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "baseUrl": "./src",
+    "resolveJsonModule": true,
+    "paths": {
+      "@node_modules_mocks/*": ["../../__mocks__/*"], // namespace to allow for absolute paths
+      "*": ["*"]
+    }
+  },
+  "include": ["src/**/*.ts", "__mocks__/**/*.ts"],
+  "exclude": ["node_modules", "lambda", "coverage"]
+}
