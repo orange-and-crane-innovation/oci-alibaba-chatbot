@@ -67,6 +67,8 @@ async function handleMessage(senderPsid, receivedMessage) {
         utterance: receivedMessage.text,
       });
       console.log("chat", chat.body);
+      console.log("data", chat.body.data);
+      console.log("messages[0]", chat.body.data.messages[0]);
       response = {
         text: chat.body.data.messages[0].text.content,
       };
