@@ -3,6 +3,7 @@ import { Event, Handler } from "../types";
 import { withPreflightResponse } from "utils/middleware";
 import { verifyAuthToken } from "utils/token";
 import Client from "services/beebot-service";
+import axios from "axios";
 import { knowledge } from "knowledge-base";
 
 async function callSendAPI(senderPsid, response) {
@@ -20,13 +21,20 @@ async function callSendAPI(senderPsid, response) {
 
   // Send the HTTP request to the Messenger Platform
   console.log(
-    "gb request",
+    "fb request",
     JSON.stringify({
       uri: "https://graph.facebook.com/v2.6/me/messages",
       qs: { access_token: ACCESS_TOKEN },
       method: "POST",
       json: requestBody,
     })
+  );
+  return axios.post(
+    "https://graph.facebook.com/v2.6/me/messages",
+    requestBody,
+    {
+      params: { access_token: ACCESS_TOKEN },
+    }
   );
   return request(
     {
