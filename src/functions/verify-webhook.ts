@@ -8,6 +8,7 @@ import { knowledge } from "knowledge-base";
 async function callSendAPI(senderPsid, response) {
   // The page access token we have generated in your app settings
   const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
+  console.log("ACCESS_TOKEN", ACCESS_TOKEN);
 
   // Construct the message body
   let requestBody = {
@@ -18,6 +19,15 @@ async function callSendAPI(senderPsid, response) {
   };
 
   // Send the HTTP request to the Messenger Platform
+  console.log(
+    "gb request",
+    JSON.stringify({
+      uri: "https://graph.facebook.com/v2.6/me/messages",
+      qs: { access_token: ACCESS_TOKEN },
+      method: "POST",
+      json: requestBody,
+    })
+  );
   return request(
     {
       uri: "https://graph.facebook.com/v2.6/me/messages",
