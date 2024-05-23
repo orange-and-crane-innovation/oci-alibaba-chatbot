@@ -29,28 +29,33 @@ async function callSendAPI(senderPsid, response) {
       json: requestBody,
     })
   );
-  return axios.post(
-    "https://graph.facebook.com/v2.6/me/messages",
-    requestBody,
-    {
-      params: { access_token: ACCESS_TOKEN },
-    }
-  );
-  return request(
-    {
-      uri: "https://graph.facebook.com/v2.6/me/messages",
-      qs: { access_token: ACCESS_TOKEN },
-      method: "POST",
-      json: requestBody,
-    },
-    (err, _res, _body) => {
-      if (!err) {
-        console.log("Message sent!");
-      } else {
-        console.error("Unable to send message:" + err);
+  try {
+    const { data, status } = await axios.post(
+      "https://graph.facebook.com/v2.6/me/messages",
+      requestBody,
+      {
+        params: { access_token: ACCESS_TOKEN },
       }
-    }
-  );
+    );
+    console.log("data", data, status);
+  } catch (err) {
+    console.log("Error", err);
+  }
+  // return request(
+  //   {
+  //     uri: "https://graph.facebook.com/v2.6/me/messages",
+  //     qs: { access_token: ACCESS_TOKEN },
+  //     method: "POST",
+  //     json: requestBody,
+  //   },
+  //   (err, _res, _body) => {
+  //     if (!err) {
+  //       console.log("Message sent!");
+  //     } else {
+  //       console.error("Unable to send message:" + err);
+  //     }
+  //   }
+  // );
 }
 
 function handlePostback(senderPsid, receivedPostback) {
